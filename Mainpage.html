@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Add favicon link here -->
+    <link rel="icon" href="download.png" type="image/x-icon"> <!-- Adjust the path to your favicon -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #c71515;
+            position: fixed;
+            top: 0;
+            left: 30px;
+            height: 100%;
+            padding-top: 60px;
+            transform: translateX(-250px);
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            position: 20px;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            font-size: 30px;
+            color: #e65e20;
+            z-index: 3;
+            background-color: #555;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 4px;
+            background-color: #e65e20;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        /* Main content styling */
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+            width: 100%;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+            background: linear-gradient(135deg, #4a90e2, #56c1f9);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .main-content.active {
+            margin-left: 250px;
+        }
+
+        /* Background animation */
+        .main-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Icon -->
+    <div class="hamburger" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar"> 
+        <form action="Mainpage.html" method="post">
+            <a href="Mainpage.html">Home</a>
+            <a href="contacts.php">Contacts</a>
+            <a href="about.php">About Us</a>
+            <a href="profile.php">Profile</a>
+            <a href="logout.php">Log out</a>
+        </form>
+        
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <h1>Welcome to Your Dashboard</h1>
+        <p>This is your main information screen where you can edit content.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius consequat risus, sed bibendum tortor vulputate eget.</p>
+    </div>
+
+    <script>
+        // Toggle the sidebar visibility
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('main-content').classList.toggle('active');
+        }
+
+        // Hide sidebar when clicking on main content
+        document.getElementById('main-content').addEventListener('click', function() {
+            if (document.getElementById('sidebar').classList.contains('active')) {
+                toggleSidebar();
+            }
+        });
+    </script>
+</body>
+</html>
